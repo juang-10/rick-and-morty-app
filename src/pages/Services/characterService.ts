@@ -16,25 +16,25 @@ export const fetchCharacters = async ({
   gender,
 }: ParamsProps = {}) => {
   try {
-    // Crear un objeto con todos los parámetros
+    // Create an object with all parameters
     const allParams = { name, status, species, type, gender };
 
-    // Filtrar los parámetros que no son undefined, null o cadena vacía
+    // Filter out parameters that are not undefined, null or empty string
     const definedParams = Object.fromEntries(
       Object.entries(allParams).filter(
         ([_, value]) => value !== undefined && value !== null && value !== ''
       )
     );
 
-    // Inicializar las opciones de la solicitud
+    // Initialize the application options
     const options: any = {};
 
-    // Si hay parámetros definidos, añadirlos a las opciones
+    // If there are defined parameters, add them to the options
     if (Object.keys(definedParams).length > 0) {
       options.params = definedParams;
     }
 
-    // Realizar la solicitud con o sin parámetros
+    // Make the request with or without parameters
     const response = await axios.get<CharactersAPI>(
       `${import.meta.env.VITE_BASE_URL}/character`,
       options
