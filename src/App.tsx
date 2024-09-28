@@ -1,8 +1,6 @@
-import { Navigation } from "./Navigation";
-
+import { Navigation } from './Navigation';
 
 function App() {
-
   return (
     <>
       <Navigation />

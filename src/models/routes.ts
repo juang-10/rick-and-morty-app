@@ -5,4 +5,4 @@ export const RoutesApp = {
   LOCATIONS: '/locations',
   LOCATION: '/location/:id',
   NOT_FOUND: '*',
-}
+};
