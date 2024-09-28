@@ -1,24 +1,42 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material"
-import { Location } from "../interfaces/characterInterfaceApi"
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material';
+import { Location } from '../interfaces/characterInterfaceAPI';
 
 interface CharacterCardProps {
-  name: string
-  image: string
-  status: string
-  location: Location
+  name: string;
+  image: string;
+  status: string;
+  location: Location;
 }
-export const CharacterCard = ({name, image, status, location}: CharacterCardProps) => {
+export const CharacterCard = ({
+  name,
+  image,
+  status,
+  location,
+}: CharacterCardProps) => {
   return (
     <>
       <Card sx={{ width: 345 }}>
-        <CardMedia
-          sx={{ height: 300 }}
-          image={image}
-          title="green iguana"
-        />
-        <Box sx={{ backgroundColor: status === 'Alive' ? '#039487' : status === 'Dead' ? '#ff2c2c' : '#edb95e'}}>
+        <CardMedia sx={{ height: 300 }} image={image} title={name} />
+        <Box
+          sx={{
+            backgroundColor:
+              status === 'Alive'
+                ? '#039487'
+                : status === 'Dead'
+                  ? '#ff2c2c'
+                  : '#edb95e',
+          }}
+        >
           <Typography variant="body1" color="white" ml={2}>
-            { status }
+            {status}
           </Typography>
         </Box>
         <CardContent>
@@ -38,5 +56,5 @@ export const CharacterCard = ({name, image, status, location}: CharacterCardProp
         </CardActions>
       </Card>
     </>
-  )
-}
+  );
+};
