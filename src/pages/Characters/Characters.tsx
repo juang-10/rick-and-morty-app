@@ -9,7 +9,6 @@ interface Query {
 }
 export const Characters = () => {
   const { characters, setCharacters, search } = useContext(GlobalContext);
-  console.log('🚀 ~ Characters ~ search:', search);
 
   const getCharacters = async (query: Query) => {
     try {
