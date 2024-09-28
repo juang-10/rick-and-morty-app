@@ -1,29 +1,50 @@
-import { useContext, useEffect } from "react";
-import { GlobalContext } from "../../context/GlobalContext";
-import { fetchCharacters } from "../Services/characterService";
-import { CharacterCard } from "../components";
-import { Box } from "@mui/material";
+import { useContext, useEffect } from 'react';
+import { GlobalContext } from '../../context/GlobalContext';
+import { fetchCharacters } from '../Services/characterService';
+import { CharacterCard, SearchBar } from '../components';
+import { Container, Box } from '@mui/material';
 
+interface Query {
+  name: string;
+}
 export const Characters = () => {
-  const { characters, setCharacters } = useContext(GlobalContext);
+  const { characters, setCharacters, search } = useContext(GlobalContext);
+  console.log('🚀 ~ Characters ~ search:', search);
+
+  const getCharacters = async (query: Query) => {
+    try {
+      const response = await fetchCharacters(query);
+      setCharacters(response?.data.results || []);
+    } catch (error) {
+      console.error('Error fetching characters:', error);
+    }
+  };
 
   useEffect(() => {
-    const getCharacters = async () => {
-      try {
-        const response = await fetchCharacters();
-        setCharacters(response?.data.results || []);
-      } catch (error) {
-        console.error('Error fetching characters:', error);
-      }
-    }
-    getCharacters();
-  }, [])
-  
+    const timer = setTimeout(() => {
+      const query = {
+        name: search,
+      };
+      getCharacters(query);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [search]);
+
   return (
-    <Box display='flex' flexWrap='wrap' gap={4} justifyContent="center">
-      {characters.map((character) => (
-        <CharacterCard key={character.id} {...character} />
-      ))}
-    </Box>
-  )
-}
+    <Container>
+      <SearchBar />
+      <Box
+        display="flex"
+        flexWrap="wrap"
+        gap={4}
+        justifyContent="center"
+        mt={4}
+      >
+        {characters.map((character) => (
+          <CharacterCard key={character.id} {...character} />
+        ))}
+      </Box>
+    </Container>
+  );
+};
