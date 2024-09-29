@@ -6,6 +6,12 @@ type contextValues = {
   setCharacters: Dispatch<SetStateAction<ResultCharactersApi[]>>;
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
+  statusSelected: string;
+  setStatusSelected: Dispatch<SetStateAction<string>>;
+  speciesSelected: string;
+  setSpeciesSelected: Dispatch<SetStateAction<string>>;
+  genderSelected: string;
+  setGenderSelected: Dispatch<SetStateAction<string>>;
 };
 
 const defaultValue = {
@@ -13,6 +19,12 @@ const defaultValue = {
   setCharacters: () => {},
   search: '',
   setSearch: () => {},
+  statusSelected: '',
+  setStatusSelected: () => {},
+  speciesSelected: '',
+  setSpeciesSelected: () => {},
+  genderSelected: '',
+  setGenderSelected: () => {},
 };
 
 export const GlobalContext = createContext<contextValues>(defaultValue);
