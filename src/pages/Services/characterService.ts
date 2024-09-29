@@ -7,6 +7,7 @@ interface ParamsProps {
   species?: string;
   type?: string;
   gender?: string;
+  page?: number;
 }
 export const fetchCharacters = async ({
   name,
@@ -14,10 +15,11 @@ export const fetchCharacters = async ({
   species,
   type,
   gender,
+  page,
 }: ParamsProps = {}) => {
   try {
     // Create an object with all parameters
-    const allParams = { name, status, species, type, gender };
+    const allParams = { name, status, species, type, gender, page };
 
     // Filter out parameters that are not undefined, null or empty string
     const definedParams = Object.fromEntries(
