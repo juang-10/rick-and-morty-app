@@ -21,7 +21,6 @@ export const SearchBar = () => {
         </InputAdornment>
       }
       fullWidth
-      sx={{ mt: 4 }}
     />
   );
 };
