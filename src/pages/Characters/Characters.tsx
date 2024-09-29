@@ -2,14 +2,17 @@ import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 import { fetchCharacters } from './Services/characterService';
 import { Container, Box, Skeleton } from '@mui/material';
-import { CharacterCard, PaginationRounded, SearchBar } from './components';
+import { CharacterCard, FiltersCharacters, PaginationRounded, SearchBar } from './components';
 
 interface Query {
   name: string;
   page: number;
+  status: string;
+  species: string;
+  gender: string;
 }
 export const Characters = () => {
-  const { characters, setCharacters, search } = useContext(GlobalContext);
+  const { characters, setCharacters, search, statusSelected, speciesSelected, genderSelected, setStatusSelected, setSpeciesSelected, setGenderSelected } = useContext(GlobalContext);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [ loading, setLoading ] = useState(false);
@@ -25,6 +28,9 @@ export const Characters = () => {
       const query: Query = {
         name: finalSearch,
         page: page,
+        status: statusSelected,
+        species: speciesSelected,
+        gender: genderSelected,
       };
       const response = await fetchCharacters(query);
       setCharacters(response?.data.results || []);
@@ -36,13 +42,21 @@ export const Characters = () => {
     }
   };
 
+  const clearFilters = () => {
+    setPage(1);
+    setFinalSearch('');
+    setStatusSelected('');
+    setSpeciesSelected('');
+    setGenderSelected('');
+  }
+
   useEffect(() => {
     setPage(1);
   }, [search]);
 
   useEffect(() => {
     getCharacters();
-  } , [finalSearch, page]);
+  } , [finalSearch, page, statusSelected, speciesSelected, genderSelected]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -53,36 +67,41 @@ export const Characters = () => {
   }, [search]);
 
   return (
-    <Container>
-      <SearchBar />
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        gap={4}
-        justifyContent="center"
-        mt={4}
-      >
-        {loading ? (
-          Array.from(new Array(8)).map((_, index) => (
-            <Skeleton
-              key={index}
-              variant="rectangular"
-              width={345}
-              height={400}
-              animation="wave"
-            />
-          ))
-        ) : (
-          characters.map((character) => (
-            <CharacterCard key={character.id} {...character} />
-          ))
-        )}
+    <Box display="flex" gap={4} p={4} alignItems="flex-start">
+      <Box flex={1}>
+        <FiltersCharacters clearFilters={clearFilters}/>
       </Box>
-      <PaginationRounded
-        count={totalPages}
-        page={page}
-        onChange={handlePaginationChange}
-      />
-    </Container>
+      <Box flex={4}>
+        <SearchBar />
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          gap={4}
+          justifyContent="center"
+          mt={4}
+        >
+          {loading ? (
+            Array.from(new Array(8)).map((_, index) => (
+              <Skeleton
+                key={index}
+                variant="rectangular"
+                width={345}
+                height={400}
+                animation="wave"
+              />
+            ))
+          ) : (
+            characters.map((character) => (
+              <CharacterCard key={character.id} {...character} />
+            ))
+          )}
+        </Box>
+        <PaginationRounded
+          count={totalPages}
+          page={page}
+          onChange={handlePaginationChange}
+        />
+      </Box>
+    </Box>
   );
 };
