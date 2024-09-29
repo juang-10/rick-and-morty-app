@@ -6,6 +6,7 @@ import { Container, Box } from '@mui/material';
 
 interface Query {
   name: string;
+  page: number;
 }
 export const Characters = () => {
   const { characters, setCharacters, search } = useContext(GlobalContext);
@@ -13,9 +14,6 @@ export const Characters = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   function handlePaginationChange(_: ChangeEvent<unknown>, value: number) {
-    if (search) {
-      setPage(value);
-    }
     setPage(value);
   }
 
@@ -28,6 +26,10 @@ export const Characters = () => {
       console.error('Error fetching characters:', error);
     }
   };
+
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
