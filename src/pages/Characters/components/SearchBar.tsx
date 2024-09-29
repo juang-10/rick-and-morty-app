@@ -1,7 +1,7 @@
 import { InputAdornment, OutlinedInput } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { ChangeEvent, useContext } from 'react';
-import { GlobalContext } from '../../context/GlobalContext';
+import { GlobalContext } from '../../../context/GlobalContext';
 
 export const SearchBar = () => {
   const { search, setSearch } = useContext(GlobalContext);

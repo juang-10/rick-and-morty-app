@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { ResultCharactersApi } from '../pages/interfaces/characterInterfaceAPI';
+import { ResultCharactersApi } from '../pages/Characters/interfaces/characterInterfaceAPI';
 
 type contextValues = {
   characters: ResultCharactersApi[];

@@ -1,5 +1,5 @@
 import { ReactNode, useMemo, useState } from 'react';
-import { ResultCharactersApi } from '../pages/interfaces/characterInterfaceAPI';
+import { ResultCharactersApi } from '../pages/Characters/interfaces/characterInterfaceAPI';
 import { GlobalContext } from './GlobalContext';
 
 export const GlobalContextProvider = ({
