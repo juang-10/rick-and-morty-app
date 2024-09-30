@@ -49,6 +49,7 @@ export const FiltersCharacters = ({clearFilters}: FiltersCharactersProps) => {
                 variant="contained" 
                 sx={{ mr: 2, mb: 2 }}
                 onClick={() => setStatusSelected(statusCharacter)}
+                key={statusCharacter}
               >
                 {statusCharacter}
               </Button>
@@ -69,6 +70,7 @@ export const FiltersCharacters = ({clearFilters}: FiltersCharactersProps) => {
                 variant="contained" 
                 sx={{ mr: 2, mt: 2 }}
                 onClick={() => setSpeciesSelected(specie)}
+                key={specie}
               >
                 {specie}
               </Button>
@@ -89,6 +91,7 @@ export const FiltersCharacters = ({clearFilters}: FiltersCharactersProps) => {
                 variant="contained" 
                 sx={{ mr: 2, mt: 2 }}
                 onClick={() => setGenderSelected(gender)}
+                key={gender}
               >
                 {gender}
               </Button>
