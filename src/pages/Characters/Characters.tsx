@@ -3,6 +3,7 @@ import { GlobalContext } from '../../context/GlobalContext';
 import { fetchCharacters } from './Services/characterService';
 import { Container, Box, Skeleton } from '@mui/material';
 import { CharacterCard, FiltersCharacters, PaginationRounded, SearchBar } from './components';
+import { Navbar } from './components/Navbar';
 
 interface Query {
   name: string;
@@ -67,41 +68,44 @@ export const Characters = () => {
   }, [search]);
 
   return (
-    <Box display="flex" gap={4} p={4} alignItems="flex-start">
-      <Box flex={1}>
-        <FiltersCharacters clearFilters={clearFilters}/>
-      </Box>
-      <Box flex={4}>
-        <SearchBar />
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          gap={4}
-          justifyContent="center"
-          mt={4}
-        >
-          {loading ? (
-            Array.from(new Array(8)).map((_, index) => (
-              <Skeleton
-                key={index}
-                variant="rectangular"
-                width={345}
-                height={400}
-                animation="wave"
-              />
-            ))
-          ) : (
-            characters.map((character) => (
-              <CharacterCard key={character.id} {...character} />
-            ))
-          )}
+    <>
+      <Navbar />
+      <Box display="flex" gap={4} p={4} alignItems="flex-start">
+        <Box flex={1}>
+          <FiltersCharacters clearFilters={clearFilters}/>
         </Box>
-        <PaginationRounded
-          count={totalPages}
-          page={page}
-          onChange={handlePaginationChange}
-        />
+        <Box flex={4}>
+          <SearchBar />
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            gap={4}
+            justifyContent="center"
+            mt={4}
+          >
+            {loading ? (
+              Array.from(new Array(8)).map((_, index) => (
+                <Skeleton
+                  key={index}
+                  variant="rectangular"
+                  width={345}
+                  height={400}
+                  animation="wave"
+                />
+              ))
+            ) : (
+              characters.map((character) => (
+                <CharacterCard key={character.id} {...character} />
+              ))
+            )}
+          </Box>
+          <PaginationRounded
+            count={totalPages}
+            page={page}
+            onChange={handlePaginationChange}
+          />
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
