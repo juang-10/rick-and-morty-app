@@ -1,9 +1,8 @@
+import { Box, Skeleton, Typography } from '@mui/material';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
-import { fetchCharacters } from './Services/characterService';
-import { Container, Box, Skeleton } from '@mui/material';
 import { CharacterCard, FiltersCharacters, PaginationRounded, SearchBar } from './components';
-import { Navbar } from './components/Navbar';
+import { fetchCharacters } from './Services/characterService';
 
 interface Query {
   name: string;
@@ -69,12 +68,14 @@ export const Characters = () => {
 
   return (
     <>
-      <Navbar />
       <Box display="flex" gap={4} p={4} alignItems="flex-start">
         <Box flex={1}>
           <FiltersCharacters clearFilters={clearFilters}/>
         </Box>
         <Box flex={4}>
+          <Typography variant="h4" mb={2} align="center">
+            Characters
+          </Typography>
           <SearchBar />
           <Box
             display="flex"
