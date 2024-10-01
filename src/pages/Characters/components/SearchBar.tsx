@@ -8,7 +8,7 @@ export const SearchBar = () => {
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
-  }
+  };
 
   return (
     <OutlinedInput

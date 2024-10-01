@@ -7,4 +7,4 @@ export * from './Characters/components/SearchBar';
 export * from './Characters/interfaces/characterInterfaceAPI';
 export * from './Characters/Services/characterService';
 export * from './Episodes/Episodes';
-export * from './Locations/index'
+export * from './Locations/index';

@@ -1,7 +1,12 @@
 import { Box, Skeleton, Typography } from '@mui/material';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
-import { CharacterCard, FiltersCharacters, PaginationRounded, SearchBar } from './components';
+import {
+  CharacterCard,
+  FiltersCharacters,
+  PaginationRounded,
+  SearchBar,
+} from './components';
 import { fetchCharacters } from './Services/characterService';
 
 interface Query {
@@ -12,11 +17,21 @@ interface Query {
   gender: string;
 }
 export const Characters = () => {
-  const { characters, setCharacters, search, statusSelected, speciesSelected, genderSelected, setStatusSelected, setSpeciesSelected, setGenderSelected } = useContext(GlobalContext);
+  const {
+    characters,
+    setCharacters,
+    search,
+    statusSelected,
+    speciesSelected,
+    genderSelected,
+    setStatusSelected,
+    setSpeciesSelected,
+    setGenderSelected,
+  } = useContext(GlobalContext);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [ loading, setLoading ] = useState(false);
-  const [ finalSearch, setFinalSearch ] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [finalSearch, setFinalSearch] = useState('');
 
   function handlePaginationChange(_: ChangeEvent<unknown>, value: number) {
     setPage(value);
@@ -48,7 +63,7 @@ export const Characters = () => {
     setStatusSelected('');
     setSpeciesSelected('');
     setGenderSelected('');
-  }
+  };
 
   useEffect(() => {
     setPage(1);
@@ -56,7 +71,7 @@ export const Characters = () => {
 
   useEffect(() => {
     getCharacters();
-  } , [finalSearch, page, statusSelected, speciesSelected, genderSelected]);
+  }, [finalSearch, page, statusSelected, speciesSelected, genderSelected]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -70,7 +85,7 @@ export const Characters = () => {
     <>
       <Box display="flex" gap={4} p={4} alignItems="flex-start">
         <Box flex={1}>
-          <FiltersCharacters clearFilters={clearFilters}/>
+          <FiltersCharacters clearFilters={clearFilters} />
         </Box>
         <Box flex={4}>
           <Typography variant="h4" mb={2} align="center">
@@ -84,21 +99,19 @@ export const Characters = () => {
             justifyContent="center"
             mt={4}
           >
-            {loading ? (
-              Array.from(new Array(8)).map((_, index) => (
-                <Skeleton
-                  key={index}
-                  variant="rectangular"
-                  width={345}
-                  height={400}
-                  animation="wave"
-                />
-              ))
-            ) : (
-              characters.map((character) => (
-                <CharacterCard key={character.id} {...character} />
-              ))
-            )}
+            {loading
+              ? Array.from(new Array(8)).map((_, index) => (
+                  <Skeleton
+                    key={index}
+                    variant="rectangular"
+                    width={345}
+                    height={400}
+                    animation="wave"
+                  />
+                ))
+              : characters.map((character) => (
+                  <CharacterCard key={character.id} {...character} />
+                ))}
           </Box>
           <PaginationRounded
             count={totalPages}

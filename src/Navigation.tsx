@@ -3,7 +3,6 @@ import { RoutesApp } from './models';
 import { Characters, Episodes, Locations, Navbar } from './pages';
 
 export const Navigation = () => {
-  
   return (
     <>
       <Navbar />

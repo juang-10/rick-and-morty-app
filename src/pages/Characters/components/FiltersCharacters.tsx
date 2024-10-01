@@ -28,8 +28,9 @@ const genders = ['female', 'male', 'genderless', 'unknown'];
 interface FiltersCharactersProps {
   clearFilters: () => void;
 }
-export const FiltersCharacters = ({clearFilters}: FiltersCharactersProps) => {
-  const { setStatusSelected, setSpeciesSelected, setGenderSelected } = useContext(GlobalContext);
+export const FiltersCharacters = ({ clearFilters }: FiltersCharactersProps) => {
+  const { setStatusSelected, setSpeciesSelected, setGenderSelected } =
+    useContext(GlobalContext);
   return (
     <Box>
       <Typography variant="h6">Filters</Typography>
@@ -45,8 +46,8 @@ export const FiltersCharacters = ({clearFilters}: FiltersCharactersProps) => {
           </AccordionSummary>
           <AccordionDetails>
             {status.map((statusCharacter) => (
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 sx={{ mr: 2, mb: 2 }}
                 onClick={() => setStatusSelected(statusCharacter)}
                 key={statusCharacter}
@@ -66,8 +67,8 @@ export const FiltersCharacters = ({clearFilters}: FiltersCharactersProps) => {
           </AccordionSummary>
           <AccordionDetails>
             {species.map((specie) => (
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 sx={{ mr: 2, mt: 2 }}
                 onClick={() => setSpeciesSelected(specie)}
                 key={specie}
@@ -87,8 +88,8 @@ export const FiltersCharacters = ({clearFilters}: FiltersCharactersProps) => {
           </AccordionSummary>
           <AccordionDetails>
             {genders.map((gender) => (
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 sx={{ mr: 2, mt: 2 }}
                 onClick={() => setGenderSelected(gender)}
                 key={gender}
