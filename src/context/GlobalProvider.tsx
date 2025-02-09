@@ -13,8 +13,10 @@ export const GlobalContextProvider = ({
   const [statusSelected, setStatusSelected] = useState<string>('');
   const [speciesSelected, setSpeciesSelected] = useState<string>('');
   const [genderSelected, setGenderSelected] = useState<string>('');
-  const [ id, setId ] = useState<string | null>(null);
-  const [ resultCharacterEpisode, setResultCharacterEpisode ] = useState<Result[]>([]);
+  const [id, setId] = useState<string | null>(null);
+  const [resultCharacterEpisode, setResultCharacterEpisode] = useState<
+    Result[]
+  >([]);
 
   const contextValue = useMemo(
     () => ({
@@ -31,9 +33,17 @@ export const GlobalContextProvider = ({
       id,
       setId,
       resultCharacterEpisode,
-      setResultCharacterEpisode
+      setResultCharacterEpisode,
     }),
-    [characters, search, statusSelected, speciesSelected, genderSelected, id, resultCharacterEpisode]
+    [
+      characters,
+      search,
+      statusSelected,
+      speciesSelected,
+      genderSelected,
+      id,
+      resultCharacterEpisode,
+    ]
   );
 
   return (

@@ -17,7 +17,7 @@ export const fetchCharacters = async ({
   type,
   gender,
   page,
-  episode
+  episode,
 }: ParamsProps = {}) => {
   try {
     // Create an object with all parameters
